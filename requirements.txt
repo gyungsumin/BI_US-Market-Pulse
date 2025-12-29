@@ -1,0 +1,9 @@
+# Environment
+python-dotenv==1.2.1
+
+# GCP
+google-cloud-bigquery==3.39.0
+
+
+# Python src
+PyYAML==6.0.3
