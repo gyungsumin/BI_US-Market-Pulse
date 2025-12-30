@@ -1,4 +1,4 @@
-# Remove outdated incremental files# Daily data incremental
+# Remove outdated pipeline files# Daily data pipeline
 #
 # import yaml
 #

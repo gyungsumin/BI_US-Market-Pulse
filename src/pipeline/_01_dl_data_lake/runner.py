@@ -42,6 +42,32 @@ def run(client_gspread, client_bigquery):
     print(df_ticker_asis)
     return None
 
+
+def _get_asis_ticker(client_bigquery) -> pd.DataFrame:
+    return client_bigquery.query(
+        '''
+        SELECT
+            country_code
+            , exchange
+            , ticker
+            , MIN(date) AS min_date
+            , MAX(date) AS max_date
+        FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_daily`
+        GROUP BY country_code, exchange, ticker
+        '''
+    ).to_dataframe()
+
+
+def _get_tobe_ticker(client_gspread) -> pd.DataFrame:
+    rows = client_gspread.open_by_key(GSHEET_TICKER_fileId).worksheet(GSHEET_TICKER_sheetName).get_all_values()
+
+    return pd.DataFrame(rows[1:], columns=rows[0]).drop(['Name', 'Strategy'], axis=1).drop_duplicates()
+
+
+
+
+
+
 #
 # def _insert_new_ticker(df):
 #

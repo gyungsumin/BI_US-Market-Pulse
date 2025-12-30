@@ -11,7 +11,9 @@ import os
 
 # Environment detection
 IS_CLOUD_RUN = bool(os.getenv("K_SERVICE"))
-if not IS_CLOUD_RUN:  # Local env
+if IS_CLOUD_RUN:
+    PROJECT_ROOT = Path('')
+else:  # Local env
     # local project root
     PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,11 +29,17 @@ GCP_PROJECT_NAME = os.environ.get('GCP_PROJECT_NAME')
 
 # Assign EV (Require path)
 ## [0] Credentials & ADC
-if IS_CLOUD_RUN:  # Cloud
-    pass
-    # GCP_SA_SPREADSHEET_ACCESS = os.environ.get('GCP_SA_SPREADSHEET_ACCESS') -> 불필요 (ADC)
-else:
+if not IS_CLOUD_RUN:
+    # Cloud 환경은 ADC로 불필요
     GCP_SA_SPREADSHEET_ACCESS = PROJECT_ROOT / os.environ.get('GCP_SA_SPREADSHEET_ACCESS')
+# SQL_PATH = PROJECT_ROOT / os.environ.get('SQL_PATH')
 
-## [2] SQL query files
+# if IS_CLOUD_RUN:  # Cloud
+#     pass
+#     # GCP_SA_SPREADSHEET_ACCESS = os.environ.get('GCP_SA_SPREADSHEET_ACCESS') -> 불필요 (ADC)
+#     SQL_PATH = os.environ.get('SQL_PATH')
+# else:
+#     GCP_SA_SPREADSHEET_ACCESS = PROJECT_ROOT / os.environ.get('GCP_SA_SPREADSHEET_ACCESS')
+#     SQL_PATH = PROJECT_ROOT / os.environ.get('SQL_PATH')
+
 
