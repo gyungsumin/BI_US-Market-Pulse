@@ -1,4 +1,4 @@
-# Remove outdated batch files# Daily data batch
+# Remove outdated incremental files# Daily data incremental
 #
 # import yaml
 #
