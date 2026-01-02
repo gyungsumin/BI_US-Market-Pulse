@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from google.cloud import bigquery
 
 
-def run(client_gspread, client_bigquery, ingestion_date):
+def gspread_to_bq(client_gspread, client_bigquery, ingestion_date):
     # Get recent ticker list from spreadsheet
     rows = client_gspread.open_by_key(GSHEET_TICKER_fileId).worksheet(GSHEET_TICKER_sheetName).get_all_values()
 

@@ -4,7 +4,7 @@ python-dotenv==1.2.1
 
 # GCP
 google-cloud-bigquery==3.39.0
-
+google==3.0.0
 
 # Python src
 ## reader
@@ -12,7 +12,9 @@ PyYAML==6.0.3
 
 ## api
 gspread==6.2.1
+yfinance==1.0
 
 ## general
 pandas==2.3.3
 db-dtypes==1.5.0
+openpyxl==3.1.5

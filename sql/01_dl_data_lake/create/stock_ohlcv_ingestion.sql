@@ -1,4 +1,4 @@
-CREATE TABLE `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_daily` (
+CREATE TABLE `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_ingestion` (
     date DATE NOT NULL,
     country_code STRING NOT NULL,
     exchange STRING NOT NULL,
@@ -10,7 +10,9 @@ CREATE TABLE `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_daily` (
         close FLOAT64 NOT NULL,
         adj_close FLOAT64 NOT NULL,
         volume INT64 NOT NULL
-    > NOT NULL
+    > NOT NULL,
+    ingestion_date DATE NOT NULL,
+    task_timestamp TIMESTAMP NOT NULL
 )
 PARTITION BY date
 CLUSTER BY exchange, ticker;

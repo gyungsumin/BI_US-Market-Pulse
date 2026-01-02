@@ -31,7 +31,7 @@ WITH _ticker_tobe AS
     , A.task_timestamp
     , CASE
       WHEN A.country_code IS NULL THEN 'delete'
-      WHEN B.country_code IS NULL THEN 'insert'  -- Newely added
+      WHEN B.country_code IS NULL THEN 'insert'  -- Newly added
       ELSE 'insert' 
       END AS merge_indicator
     , COALESCE(DATE_ADD(max_d, INTERVAL 1 DAY), '2025-06-01') AS request_date_from
@@ -47,7 +47,7 @@ WITH _ticker_tobe AS
       , ticker
       , MIN(date) AS min_d
       , MAX(date) AS max_d
-    FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_daily`
+    FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_ingestion`
     GROUP BY country_code, exchange, ticker
   ) AS C
   USING(country_code, exchange, ticker)
