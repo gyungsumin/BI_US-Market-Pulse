@@ -28,15 +28,20 @@ def main():
     )
 
     # 1-2 Data ingestion: yfinance
+    ## Truncate & Insert "01_dl_data_lake.stock_ohlcv_ingestion" (신규 요청 초기 적재)
     stock_ohlcv.yfinance_to_bq(client_bigquery=client_bigquery, ingestion_date=ingestion_date)
 
-    ## ticker_request에서 신규, 업데이트 대상 조회
-    ## 데이터 취득
-    ## 임시 테이블 truncate
+    ## Merge "01_dl_data_lake.stock_ohlcv" (Insert 신규, Delete)
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/01_dl_data_lake/01_dl_stock_ohlcv.sql')
+    )
 
-    # dl 테이블 merge (bq)
-    ## dl 본 테이블에 merge (insert & update & delete 모두)
-    ## 잘해봐 특정 범위만 머지, 전 범위 딜리트니까
+
+
+
+
+    # 2. Data Preprocessing
 
 
 if __name__ == '__main__':
