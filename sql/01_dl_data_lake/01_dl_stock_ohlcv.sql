@@ -1,5 +1,5 @@
 -- Delete dropped tickers
-DELETE FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_ingestion` AS A
+DELETE FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv` AS A
 WHERE EXISTS
 (
     SELECT 1
@@ -18,7 +18,9 @@ WHERE EXISTS
 ;
 
 -- Insert new data for existing tickers
-INSERT INTO `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_ingestion`
+INSERT INTO `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv`
 SELECT *
 FROM `bi-us-market-pulse.01_dl_data_lake.stock_ohlcv_ingestion`
 ;
+
+-- 중복탐지 제거 로직 필요하긴 함
