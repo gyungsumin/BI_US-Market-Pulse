@@ -34,8 +34,8 @@ WITH _ticker_tobe AS
       WHEN B.country_code IS NULL THEN 'insert'  -- Newly added
       ELSE 'insert' 
       END AS merge_indicator
-    , COALESCE(DATE_ADD(max_d, INTERVAL 1 DAY), '2025-01-01') AS request_date_from
-    , DATE_SUB(A.ingestion_date, INTERVAL 1 DAY) AS request_date_to
+    , COALESCE(DATE_SUB(max_d, INTERVAL 7 DAY), '2025-01-01') AS request_date_from  -- 7일 재적재
+    , A.ingestion_date AS request_date_to
   FROM _ticker_tobe AS A
   FULL JOIN _ticker_asis AS B
   USING(country_code, exchange, ticker)
