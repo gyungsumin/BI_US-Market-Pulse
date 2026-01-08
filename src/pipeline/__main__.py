@@ -52,7 +52,15 @@ def main():
     # 4. Data Mart
     bq.run_query(
         client=client_bigquery,
-        query_path=PROJECT_ROOT / Path('sql/04_dm_data_mart/04_dm_stock_ohlcv.sql')
+        query_path=PROJECT_ROOT / Path('sql/04_dm_data_mart/04_dm_01_trade_entry_01_1day.sql')
+    )
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/04_dm_data_mart/04_dm_01_trade_entry_02_30days.sql')
+    )
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/04_dm_data_mart/04_dm_01_trade_entry_03_250days.sql')
     )
 
 
