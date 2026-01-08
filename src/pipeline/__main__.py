@@ -37,18 +37,23 @@ def main():
         query_path=PROJECT_ROOT / Path('sql/01_dl_data_lake/01_dl_stock_ohlcv.sql')
     )
 
-    # # 2. Data Preprocessing
-    # bq.run_query(
-    #     client=client_bigquery,
-    #     query_path=PROJECT_ROOT / Path('sql/02_dp_data_preprocessing/02_dp_stock_ohlcv.sql')
-    # )
-    #
-    # # 2. Data Warehouse
-    # bq.run_query(
-    #     client=client_bigquery,
-    #     query_path=PROJECT_ROOT / Path('sql/03_dw_data_warehouse/03_dw_stock_ohlcv.sql')
-    # )
+    # 2. Data Preprocessing
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/02_dp_data_preprocessing/02_dp_stock_ohlcv.sql')
+    )
 
+    # 3. Data Warehouse
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/03_dw_data_warehouse/03_dw_stock_ohlcv.sql')
+    )
+
+    # 4. Data Mart
+    bq.run_query(
+        client=client_bigquery,
+        query_path=PROJECT_ROOT / Path('sql/04_dm_data_mart/04_dm_stock_ohlcv.sql')
+    )
 
 
 if __name__ == '__main__':
